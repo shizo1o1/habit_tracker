@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="UTF-8">
     <title>Main Page</title>
@@ -8,6 +8,12 @@
 </head>
 <body>
 <header th:insert="blocks/header :: header " class="allert allert-info mt-2"></header>
+
+<h1 th:inline="text">Hello <span th:remove="tag" sec:authentication="name">thymeleaf</span>!</h1>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" class="btn btn-danger" value="Sign Out"/>
+</form>
+
 
 <div class="container mt-5 mb-5">
     <table class="table table-hover">
