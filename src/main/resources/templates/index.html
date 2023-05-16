@@ -9,7 +9,7 @@
 <body>
 <header th:insert="blocks/header :: header " class="allert allert-info mt-2"></header>
 
-<h1 th:inline="text">Hello <span th:remove="tag" sec:authentication="name">thymeleaf</span>!</h1>
+<h1 th:inline="text">Hello <span th:remove="tag" sec:authentication="name"></span>!</h1>
 <form th:action="@{/logout}" method="post">
     <input type="submit" class="btn btn-danger" value="Sign Out"/>
 </form>
