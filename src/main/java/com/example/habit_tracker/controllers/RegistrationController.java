@@ -20,7 +20,8 @@ public class RegistrationController {
     public String showLogin() {
         return "login";
     }
-     @GetMapping("/registration")
+
+    @GetMapping("/registration")
     public String showRegistration() {
         return "registration";
     }
@@ -30,7 +31,7 @@ public class RegistrationController {
         User userFromDb = userRepository.findByUsername(user.getUsername());
 
         if (userFromDb != null){
-            return "redirect:/";
+            return "redirect:/login";
         }
 
         user.setActive(true);

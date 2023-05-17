@@ -27,12 +27,12 @@ public class HabitController {
     }
 
     @GetMapping("/add-habit")
-    public String postAddHabit(Model model){
+    public String addHabit (Model model){
         return "add-habit";
     }
 
     @PostMapping("/add-habit")
-    public String addHabit(@RequestParam String name,@RequestParam String description, @RequestParam String dateStart, @RequestParam String dateFinish, @RequestParam int target, @RequestParam int frequency){
+    public String postAddHabit(@RequestParam String name,@RequestParam String description, @RequestParam String dateStart, @RequestParam String dateFinish, @RequestParam int target, @RequestParam int frequency){
         Habit habit = new Habit(name, description, dateStart, dateFinish, target, frequency);
         habitRepository.save(habit);
         return "redirect:/";
@@ -51,6 +51,7 @@ public class HabitController {
     }
 
     @GetMapping("/{id}/edit")
+
     public String editHabit(@PathVariable(value = "id") long id, Model model){
         if (!habitRepository.existsById(id)){
             return ("redirect:/");
