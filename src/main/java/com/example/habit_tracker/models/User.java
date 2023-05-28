@@ -2,6 +2,10 @@ package com.example.habit_tracker.models;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 
@@ -11,10 +15,13 @@ public class    User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Size(min=2, max=30)
     private String username;
+    @NotBlank
     private String password;
     private boolean active;
+    @NotEmpty
+    @Email
     private String email;
     private String activationCode;
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)

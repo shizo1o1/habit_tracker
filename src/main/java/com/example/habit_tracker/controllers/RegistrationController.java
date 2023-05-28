@@ -3,11 +3,17 @@ package com.example.habit_tracker.controllers;
 import com.example.habit_tracker.models.User;
 import com.example.habit_tracker.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.rest.webmvc.ControllerUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.validation.Valid;
+import java.util.Map;
 
 @Controller
 public class RegistrationController {
@@ -21,14 +27,28 @@ public class RegistrationController {
     }
 
     @GetMapping("/registration")
-    public String showRegistration() {
+    public String showRegistration(Model model) {
+        model.addAttribute("user", new User());
+        model.addAttribute("username", "");
+        model.addAttribute("email", "");
         return "registration";
     }
 
     @PostMapping("/registration")
-    public String registerUser(User user) {
-        if (!userService.registerUser(user)){
-            return "redirect:/registration";
+    public String registerUser(@Valid User user, BindingResult bindingResult, Model model) {
+        model.addAttribute("user", user);
+        // Проверка наличия ошибок валидации
+        if (bindingResult.hasErrors()) {
+            // Если есть ошибки, возвращаем пользователя на страницу регистрации
+            return "registration";
+        }
+
+      
+
+        // Проверка наличия пользователя в базе данных
+        if (!userService.registerUser(user)) {
+            model.addAttribute("usernameError", "User exists!");
+            return "registration";
         }
 
         return "redirect:/login";

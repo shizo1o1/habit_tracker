@@ -13,7 +13,7 @@ public class Habit {
     private Long id;
     private String name, description, dateStart, dateFinish;
     private int target,  frequency;
-
+    
     public void setId(Long id) {
         this.id = id;
     }
