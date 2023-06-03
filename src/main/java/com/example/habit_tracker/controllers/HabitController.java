@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -20,10 +21,21 @@ public class HabitController {
     private HabitRepository habitRepository;
 
     @GetMapping("/")
-    public String home(Model model) {
+    public String home(Principal principal, Model model) {
         Iterable<Habit> habits = habitRepository.findAll();
         model.addAttribute("habit", habits);
+        if ( principal != null){
+            String username = principal.getName();
+            model.addAttribute("username", username);
+        }
         return "index";
+    }
+
+    @GetMapping("/profile")
+    public String profile(Principal principal, Model model) {
+        String username = principal.getName();
+        model.addAttribute("username", username);
+        return "profile";
     }
 
     @GetMapping("/add-habit")

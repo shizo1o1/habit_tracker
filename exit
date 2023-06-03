@@ -1,0 +1,53 @@
+[33mcommit 36d89ec0d707d2ed93a8c08d4b8646e661746aed[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: shizo1o1 <121438034+shizo1o1@users.noreply.github.com>
+Date:   Sun May 28 17:32:49 2023 +0600
+
+    add validation registration field
+
+[33mcommit c56623f51c696f8a8ad031828c37d0510d5abbab[m
+Author: shizo1o1 <121438034+shizo1o1@users.noreply.github.com>
+Date:   Fri May 26 20:03:04 2023 +0600
+
+    Implement send mail from gmail SMPT
+
+[33mcommit 0168ee895331c93b593f363cb8869078b22dc543[m
+Author: shizo1o1 <121438034+shizo1o1@users.noreply.github.com>
+Date:   Thu May 18 01:08:38 2023 +0600
+
+    fix POST methods
+
+[33mcommit ded493000aaa176817cdeb96d1410bb09003f068[m
+Author: shizo1o1 <121438034+shizo1o1@users.noreply.github.com>
+Date:   Tue May 16 15:07:55 2023 +0600
+
+    ready registration/login function
+
+[33mcommit 4afe0f24fb43781eda6d16f90373f13d8b64963a[m
+Author: shizo1o1 <121438034+shizo1o1@users.noreply.github.com>
+Date:   Tue May 16 14:07:05 2023 +0600
+
+    fix POM use spBoot 2.7 and security-config 5.5.1
+
+[33mcommit 3c3b4ddc652e862688f339f0259e531f14bfa6a8[m
+Author: shizo1o1 <121438034+shizo1o1@users.noreply.github.com>
+Date:   Mon May 15 16:37:17 2023 +0600
+
+    add config Registration and Login (notwork)
+
+[33mcommit c3eccd6ce0fd3b80ba24376e43d120a2a5caf1f5[m
+Author: shizo1o1 <121438034+shizo1o1@users.noreply.github.com>
+Date:   Fri May 12 01:31:48 2023 +0600
+
+    Implemented CRUD for Habit
+
+[33mcommit 382b2d6a8d742ce98605e227031a5a03f5736545[m
+Author: shizo1o1 <121438034+shizo1o1@users.noreply.github.com>
+Date:   Wed May 10 21:18:44 2023 +0600
+
+    connect with DB
+
+[33mcommit 3540cc7e81312cb28b7e0dba3c862f51b113bfe5[m
+Author: shizo1o1 <121438034+shizo1o1@users.noreply.github.com>
+Date:   Wed May 10 18:28:16 2023 +0600
+
+    Create project and init model Habit

@@ -10,6 +10,9 @@
 
 <div class="container text-center">
 <main class="form-signin w-100 m-auto">
+  <div class="text-success" th:if="${message}">
+    <p th:text="message"></p>
+  </div>
   <form th:action="@{/login}" method="post">
     <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-sign-railroad-fill" viewBox="0 0 16 16">
       <path d="M9.05.435c-.58-.58-1.52-.58-2.1 0L4.224 3.162 8 6.94l3.777-3.777L9.049.435Zm3.274 7.425v-.862h.467c.28 0 .467.154.467.44 0 .28-.182.421-.475.421h-.459Z"/>
@@ -17,6 +20,10 @@
       <path d="M3.162 11.777 6.94 8 3.162 4.223.435 6.951c-.58.58-.58 1.519 0 2.098l2.727 2.728Zm-.86-5.193h1.065c.592 0 .936.334.936.844 0 .39-.242.654-.485.748l.536 1.074h-.59l-.467-.994h-.473v.994h-.521V6.584Z"/>
     </svg>
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+    <div class="text-success" th:if="${message}">
+      <p th:text="message"></p>
+    </div>
 
     <div class="form-floating">
       <input name="username" type="text" class="form-control" id="floatingInput" placeholder="Username">
@@ -36,9 +43,18 @@
       </div>
     <br>
     <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-    <p class="mt-5 mb-3 text-muted">© 2017–2023</p>
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-md-12">
+        <a class="btn btn-lg btn-google btn-block text-uppercase btn-outline-secondary" href="http://localhost:8080/oauth2/authorization/google">
+          <img src="https://img.icons8.com/color/16/000000/google-logo.png"> Signup Using Google</a>
+      </div>
+    </div>
+    <p class="mt-5 mb-3 text-muted">© 2020–2023</p>
   </form>
 </main>
+
 </div>
 
 <footer th:insert="blocks/footer :: footer "></footer>
