@@ -1,10 +1,13 @@
 package com.example.habit_tracker.controllers;
 
 import com.example.habit_tracker.models.Habit;
+import com.example.habit_tracker.models.User;
 import com.example.habit_tracker.repo.HabitRepository;
+import com.example.habit_tracker.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +22,8 @@ import java.util.Optional;
 public class HabitController {
     @Autowired
     private HabitRepository habitRepository;
+    @Autowired
+    private  UserRepository userRepository;
 
     @GetMapping("/")
     public String home(Principal principal, Model model) {
@@ -32,14 +37,38 @@ public class HabitController {
     }
 
     @GetMapping("/profile")
-    public String profile(Principal principal, Model model) {
+    public String showProfile(Principal principal, Model model) {
         String username = principal.getName();
-        model.addAttribute("username", username);
+        User user = userRepository.findByUsername(username);
+        model.addAttribute("user", user);
         return "profile";
+    }
+    @GetMapping ("/profile/edit")
+    public String showEditProfile(Principal principal, Model model){
+        String username = principal.getName();
+        User user = userRepository.findByUsername(username);
+        model.addAttribute("user", user);
+        return "profile-edit";
+    }
+    @PostMapping("/profile/edit")
+    public String editProfile(Principal principal, BindingResult bindingResult, @RequestParam String username, @RequestParam String email){
+        if (bindingResult.hasErrors()) {
+            // Если есть ошибки, возвращаем пользователя на страницу регистрации
+            return "/profile/edit";
+        }
+
+        String authorizedUser = principal.getName();
+        User user = userRepository.findByUsername(authorizedUser);
+
+        user.setUsername(username);
+        user.setEmail(email);
+
+        userRepository.save(user);
+        return ("redirect:/");
     }
 
     @GetMapping("/add-habit")
-    public String addHabit (Model model){
+    public String showAddHabit (Model model){
         return "add-habit";
     }
 
@@ -63,7 +92,6 @@ public class HabitController {
     }
 
     @GetMapping("/{id}/edit")
-
     public String editHabit(@PathVariable(value = "id") long id, Model model){
         if (!habitRepository.existsById(id)){
             return ("redirect:/");

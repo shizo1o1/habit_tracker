@@ -10,11 +10,16 @@
 <body>
 <header th:insert="blocks/header :: header " class="allert allert-info mt-2"></header>
 
+<div class="container">
 <div class="container mt-5 mb-5">
-    <h1>Welcome, <span th:text="${username}"></span>!</h1>
+    <h1>Email: <span th:text="${user.email}"></span>!</h1><br>
+    <h1>Username: <span th:text="${user.username}"></span>!</h1>
 
 </div>
 
+<a  class="btn btn-primary" href="profile/edit">Edit profile</a>
+
+</div>
 <footer th:insert="blocks/footer :: footer "></footer>
 </body>
 </html>

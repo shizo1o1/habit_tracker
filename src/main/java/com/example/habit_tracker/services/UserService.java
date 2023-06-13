@@ -34,6 +34,7 @@ public class UserService {
         user.setRoles(Collections.singleton(Role.USER));
         user.setActivationCode(UUID.randomUUID().toString());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        System.out.println(user.getUsername() + " "+ user.getEmail());
 
         userRepository.save(user);
         if (!StringUtils.isEmpty(user.getEmail())){

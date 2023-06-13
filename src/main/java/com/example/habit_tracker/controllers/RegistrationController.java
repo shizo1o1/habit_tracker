@@ -76,6 +76,7 @@ public class RegistrationController {
         // Получение информации о пользователе из объекта OAuth2User
         String username = oauth2User.getAttribute("name");
         String email = oauth2User.getAttribute("email");
+        System.out.println(username + " "+ email);
 
         // Создание экземпляра пользователя
         User user = new User();
