@@ -9,7 +9,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.sql.DataSource;
@@ -19,8 +18,6 @@ import javax.sql.DataSource;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
-    @Autowired
-    private UserRepository userRepository;
 
     @Bean
     public PasswordEncoder getPasswordEncoder(){
@@ -29,19 +26,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
-//        http
-//                .authorizeRequests()
-//                .antMatchers("/", "/login", "/oauth2/**","/registration", "/activate/*").permitAll()
-//                .anyRequest().authenticated()
-//                .and()
-//                .oauth2Login()
-//                .loginPage("/login") // Страница входа.permitAll()
-//                .and()
-//                .logout()
-//                .logoutSuccessUrl("/")
-//                .permitAll();
-
         http
                 .authorizeRequests()
                 .antMatchers("/", "/login", "/oauth2/**", "/registration", "/activate/*").permitAll()
@@ -68,5 +52,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .usersByUsernameQuery("select username, password, active from usr where username=?")
                 .authoritiesByUsernameQuery("select u.username, ur.roles from usr u inner join user_role ur on u.id = ur.user_id where u.username=?");
     }
-
 }

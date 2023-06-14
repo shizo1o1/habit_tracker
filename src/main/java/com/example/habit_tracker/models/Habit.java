@@ -1,16 +1,16 @@
 package com.example.habit_tracker.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.util.Calendar;
+import javax.persistence.*;
 
 @Entity
 public class Habit {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column(name = "user_id")
+    private Long userId;
+
     private String name, description, dateStart, dateFinish;
     private int target,  frequency;
     
@@ -20,6 +20,14 @@ public class Habit {
 
     public Long getId() {
         return id;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getName() {

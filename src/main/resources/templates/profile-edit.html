@@ -10,19 +10,13 @@
 <body>
 <header th:insert="blocks/header :: header " class="allert allert-info mt-2"></header>
 
-<div class="container">
-<div class="container mt-5 mb-5">
-    <h1>Email: <span th:text="${user.email}"></span></h1><br>
-    <h1>Username: <span th:text="${user.username}"></span></h1>
-</div>
-
 <div class="container text-center">
     <main class="form-signin w-100 m-auto">
         <form th:action="@{/profile/edit}" method="post" th:object="${user}">
-            <h1 class="h3 mb-3 fw-normal">Edit profile <thb class="text-info" th:text="${user.username}"></thb></h1>
+            <h1 class="h3 mb-3 fw-normal">Edit profile</h1>
 
             <div class="form-floating">
-                <input name="username" type="text" class="form-control" th:field="*{username}" placeholder="Username" >
+                <input name="username" type="text" class="form-control" th:field="*{username}" placeholder="Username">
                 <label>User Name</label>
             </div>
             <div class="error-message" th:if="${#fields.hasErrors('username')}">
@@ -30,21 +24,28 @@
             </div>
 
             <div class="form-floating">
-                <input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com" th:field="*{email}" >
+                <input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com" th:field="*{email}">
                 <label for="floatingInput">Email address</label>
             </div>
             <div class="error-message" th:if="${#fields.hasErrors('email')}">
                 <p th:errors="*{email}"></p>
             </div>
 
-            <br>
-            <button class="w-100 btn btn-lg btn-success" type="submit">Save profile</button>
+            <div class="form-floating">
+                <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">Password</label>
+            </div>
+            <div class="error-message" th:if="${#fields.hasErrors('password')}">
+                <p th:errors="*{password}"></p>
+            </div>
+
+            <button class="w-100 btn btn-lg btn-success" type="submit">Save edit</a>
+            </button>
             <p class="mt-5 mb-3 text-muted">© 2017–2023</p>
         </form>
     </main>
 </div>
 
-</div>
 <footer th:insert="blocks/footer :: footer "></footer>
 </body>
 </html>
